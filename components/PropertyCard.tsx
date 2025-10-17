@@ -75,7 +75,7 @@ export function PropertyCard({ property, onClick }: PropertyCardProps) {
         </div>
 
         <div className="mb-4">
-          <StarRating rating={averageRating} scale={5} size="lg" />
+          <StarRating rating={averageRating} scale={10} size="lg" />
         </div>
 
         {/* Top categories */}
