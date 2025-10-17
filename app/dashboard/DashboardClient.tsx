@@ -6,7 +6,7 @@
 
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { PropertyCard } from '@/components/PropertyCard';
 import { FilterBar } from '@/components/FilterBar';
 import { ReviewTable } from '@/components/ReviewTable';
@@ -23,10 +23,18 @@ export function DashboardClient({ initialReviews, properties }: DashboardClientP
   const [reviews, setReviews] = useState<Review[]>(initialReviews);
   const [filteredReviews, setFilteredReviews] = useState<Review[]>(initialReviews);
   const [selectedProperty, setSelectedProperty] = useState<string | null>(null);
+  const reviewsSectionRef = useRef<HTMLDivElement>(null);
 
   const handleFilterChange = useCallback((filtered: Review[]) => {
     setFilteredReviews(filtered);
   }, []);
+
+  const scrollToReviews = () => {
+    reviewsSectionRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   const handlePropertyClick = (propertyId: string) => {
     if (selectedProperty === propertyId) {
@@ -36,6 +44,9 @@ export function DashboardClient({ initialReviews, properties }: DashboardClientP
       setSelectedProperty(propertyId);
       setFilteredReviews(reviews.filter(r => r.propertyId === propertyId));
     }
+
+    // Scroll to reviews section after a short delay to ensure state updates
+    setTimeout(scrollToReviews, 100);
   };
 
   const handleToggleDisplay = async (reviewId: string, display: boolean) => {
@@ -124,7 +135,7 @@ export function DashboardClient({ initialReviews, properties }: DashboardClientP
       <FilterBar reviews={reviews} onFilterChange={handleFilterChange} />
 
       {/* Reviews Table */}
-      <div>
+      <div ref={reviewsSectionRef} className="scroll-mt-6">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">
             Reviews
