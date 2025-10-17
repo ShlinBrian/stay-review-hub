@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id      String   @id @default(cuid())
+  name    String
+  reviews Review[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id               String   @id @default(cuid())
+  propertyId       String
+  property         Property @relation(fields: [propertyId], references: [id])
+  guestName        String
+  rating           Float?
+  publicReview     String
+  channel          String   // Source: airbnb, booking, etc.
+  reviewType       String   // guest-to-host or host-to-guest
+  status           String   // published
+  displayOnWebsite Boolean  @default(false) // Manager selects for display
+  categories       String   // JSON string of category ratings
+  submittedAt      DateTime
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([propertyId])
+  @@index([displayOnWebsite])
+}
