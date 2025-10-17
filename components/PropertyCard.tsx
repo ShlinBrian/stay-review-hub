@@ -25,15 +25,11 @@ export function PropertyCard({ property, onClick }: PropertyCardProps) {
   };
 
   const getTrendIcon = () => {
-    if (recentTrends.direction === 'up') return '↑';
-    if (recentTrends.direction === 'down') return '↓';
-    return '→';
+    return recentTrends.direction === 'up' ? '↑' : '↓';
   };
 
   const getTrendColor = () => {
-    if (recentTrends.direction === 'up') return 'text-green-600';
-    if (recentTrends.direction === 'down') return 'text-red-600';
-    return 'text-gray-600';
+    return recentTrends.direction === 'up' ? 'text-green-600' : 'text-red-600';
   };
 
   return (

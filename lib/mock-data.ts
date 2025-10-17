@@ -124,7 +124,8 @@ export function calculatePropertyPerformance(reviews: Review[]): PropertyPerform
       r => r.submittedAt >= sixtyDaysAgo && r.submittedAt < thirtyDaysAgo && r.rating !== null
     );
 
-    let trendDirection: 'up' | 'down' | 'stable' = 'stable';
+    // Default to 'up' but only matters if we have data
+    let trendDirection: 'up' | 'down' = 'up';
     let trendPercentage = 0;
 
     if (recentReviews.length > 0 && previousReviews.length > 0) {
@@ -136,10 +137,11 @@ export function calculatePropertyPerformance(reviews: Review[]): PropertyPerform
       const diff = recentAvg - previousAvg;
       trendPercentage = Math.round(Math.abs((diff / previousAvg) * 100));
 
-      if (diff > 0.2) {
-        trendDirection = 'up';
-      } else if (diff < -0.2) {
-        trendDirection = 'down';
+      // Determine direction based on actual change
+      if (diff >= 0) {
+        trendDirection = 'up';    // Improving or stable
+      } else {
+        trendDirection = 'down';  // Declining
       }
     }
 

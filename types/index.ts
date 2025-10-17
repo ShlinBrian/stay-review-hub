@@ -135,7 +135,7 @@ export interface PropertyPerformance {
   averageRating: number;
   categoryRatings: Record<string, number>;
   recentTrends: {
-    direction: 'up' | 'down' | 'stable';
+    direction: 'up' | 'down';
     percentage: number;
   };
 }
