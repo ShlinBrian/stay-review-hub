@@ -25,8 +25,9 @@ function normalizeHostawayReview(raw: any): any {
 
   const propertyId = listingName
     .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]/g, '');
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
   // Use the provided overall rating if available, otherwise calculate from categories
   let finalRating: number | null = raw.rating;
