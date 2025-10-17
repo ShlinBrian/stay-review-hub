@@ -1,11 +1,12 @@
 /**
  * PropertyCard Component
  *
- * Displays property performance metrics in a card format
+ * Displays property performance metrics in a card format with property image
  */
 
 'use client';
 
+import Image from 'next/image';
 import { StarRating } from './StarRating';
 import { Badge } from './Badge';
 import type { PropertyPerformance } from '@/types';
@@ -17,6 +18,11 @@ interface PropertyCardProps {
 
 export function PropertyCard({ property, onClick }: PropertyCardProps) {
   const { propertyName, totalReviews, averageRating, recentTrends } = property;
+
+  // Map property name to image filename
+  const getPropertyImage = (name: string) => {
+    return `/properties/${name}.png`;
+  };
 
   const getTrendIcon = () => {
     if (recentTrends.direction === 'up') return '↑';
@@ -33,50 +39,64 @@ export function PropertyCard({ property, onClick }: PropertyCardProps) {
   return (
     <div
       onClick={onClick}
-      className={`bg-white rounded-lg shadow-md p-6 transition-all ${
+      className={`bg-white rounded-lg shadow-md overflow-hidden transition-all ${
         onClick ? 'cursor-pointer hover:shadow-lg hover:scale-[1.02]' : ''
       }`}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-1">
-            {propertyName}
-          </h3>
-          <p className="text-sm text-gray-500">{totalReviews} reviews</p>
+      {/* Property Image */}
+      <div className="relative w-full h-48">
+        <Image
+          src={getPropertyImage(propertyName)}
+          alt={propertyName}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+
+      {/* Card Content */}
+      <div className="p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-1">
+              {propertyName}
+            </h3>
+            <p className="text-sm text-gray-500">{totalReviews} reviews</p>
+          </div>
+
+          {recentTrends.percentage > 0 && (
+            <div className={`flex items-center gap-1 ${getTrendColor()}`}>
+              <span className="text-xl">{getTrendIcon()}</span>
+              <span className="text-sm font-medium">
+                {recentTrends.percentage}%
+              </span>
+            </div>
+          )}
         </div>
 
-        {recentTrends.percentage > 0 && (
-          <div className={`flex items-center gap-1 ${getTrendColor()}`}>
-            <span className="text-xl">{getTrendIcon()}</span>
-            <span className="text-sm font-medium">
-              {recentTrends.percentage}%
-            </span>
+        <div className="mb-4">
+          <StarRating rating={averageRating} scale={5} size="lg" />
+        </div>
+
+        {/* Top categories */}
+        {Object.keys(property.categoryRatings).length > 0 && (
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Top Categories
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(property.categoryRatings)
+                .sort(([, a], [, b]) => b - a)
+                .slice(0, 3)
+                .map(([category, rating]) => (
+                  <Badge key={category} variant="default">
+                    {category}: {rating.toFixed(1)}
+                  </Badge>
+                ))}
+            </div>
           </div>
         )}
       </div>
-
-      <div className="mb-4">
-        <StarRating rating={averageRating} scale={5} size="lg" />
-      </div>
-
-      {/* Top categories */}
-      {Object.keys(property.categoryRatings).length > 0 && (
-        <div className="space-y-2">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Top Categories
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {Object.entries(property.categoryRatings)
-              .sort(([, a], [, b]) => b - a)
-              .slice(0, 3)
-              .map(([category, rating]) => (
-                <Badge key={category} variant="default">
-                  {category}: {rating.toFixed(1)}
-                </Badge>
-              ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
