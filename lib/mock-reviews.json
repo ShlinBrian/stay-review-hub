@@ -1,0 +1,369 @@
+{
+  "status": "success",
+  "result": [
+    {
+      "id": 7453,
+      "type": "host-to-guest",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Shane and family are wonderful! Would definitely host again :)",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 10 },
+        { "category": "respect_house_rules", "rating": 10 }
+      ],
+      "submittedAt": "2025-08-21 22:45:14",
+      "guestName": "Shane Finkelstein",
+      "listingName": "2B N1 A - 29 Shoreditch Heights"
+    },
+    {
+      "id": 7454,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 9.5,
+      "publicReview": "Great property with excellent amenities. Very clean and well-maintained.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 9 },
+        { "category": "location", "rating": 9 },
+        { "category": "value", "rating": 10 }
+      ],
+      "submittedAt": "2025-08-22 14:30:22",
+      "guestName": "Maria Garcia",
+      "listingName": "1B S2 B - 15 Camden Square"
+    },
+    {
+      "id": 7455,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 8.0,
+      "publicReview": "Nice apartment, could use better wifi but overall good experience.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 8 },
+        { "category": "communication", "rating": 9 },
+        { "category": "location", "rating": 8 },
+        { "category": "value", "rating": 7 }
+      ],
+      "submittedAt": "2025-08-23 09:15:45",
+      "guestName": "John Smith",
+      "listingName": "2B N1 A - 29 Shoreditch Heights"
+    },
+    {
+      "id": 7456,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Absolutely loved our stay! The location was perfect and the host was super responsive. Highly recommend!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 10 },
+        { "category": "location", "rating": 10 },
+        { "category": "value", "rating": 9 },
+        { "category": "check_in", "rating": 10 }
+      ],
+      "submittedAt": "2025-09-05 16:22:33",
+      "guestName": "Emma Thompson",
+      "listingName": "Studio W1 C - 42 Westminster Court"
+    },
+    {
+      "id": 7457,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 7.5,
+      "publicReview": "Decent place, but had some issues with noise from neighbors. Location is good though.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 8 },
+        { "category": "communication", "rating": 7 },
+        { "category": "location", "rating": 9 },
+        { "category": "value", "rating": 6 },
+        { "category": "accuracy", "rating": 7 }
+      ],
+      "submittedAt": "2025-09-12 11:45:20",
+      "guestName": "David Chen",
+      "listingName": "1B S2 B - 15 Camden Square"
+    },
+    {
+      "id": 7458,
+      "type": "host-to-guest",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Perfect guests! Left the apartment spotless. Welcome back anytime!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 9 },
+        { "category": "respect_house_rules", "rating": 10 }
+      ],
+      "submittedAt": "2025-09-15 08:30:11",
+      "guestName": "Lisa Anderson",
+      "listingName": "2B N1 A - 29 Shoreditch Heights"
+    },
+    {
+      "id": 7459,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 9.8,
+      "publicReview": "Outstanding property! Everything was exactly as described. The apartment was modern, clean, and had everything we needed. Will definitely book again!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 10 },
+        { "category": "location", "rating": 10 },
+        { "category": "value", "rating": 9 },
+        { "category": "check_in", "rating": 10 },
+        { "category": "accuracy", "rating": 10 }
+      ],
+      "submittedAt": "2025-09-20 19:12:45",
+      "guestName": "Sarah Mitchell",
+      "listingName": "Studio W1 C - 42 Westminster Court"
+    },
+    {
+      "id": 7460,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 6.5,
+      "publicReview": "The apartment was okay, but there were some maintenance issues. The host was responsive but it took a while to fix things.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 7 },
+        { "category": "communication", "rating": 8 },
+        { "category": "location", "rating": 7 },
+        { "category": "value", "rating": 5 },
+        { "category": "accuracy", "rating": 6 }
+      ],
+      "submittedAt": "2025-09-25 14:55:33",
+      "guestName": "Michael Brown",
+      "listingName": "1B S2 B - 15 Camden Square"
+    },
+    {
+      "id": 7461,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Beautiful apartment in a great neighborhood. The kitchen was fully equipped and the bed was very comfortable.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 9 },
+        { "category": "location", "rating": 10 },
+        { "category": "value", "rating": 9 },
+        { "category": "check_in", "rating": 9 }
+      ],
+      "submittedAt": "2025-10-02 10:20:15",
+      "guestName": "Jennifer Lee",
+      "listingName": "2B N1 A - 29 Shoreditch Heights"
+    },
+    {
+      "id": 7462,
+      "type": "host-to-guest",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Great guests, very respectful and easy to communicate with. Highly recommended!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 10 },
+        { "category": "respect_house_rules", "rating": 9 }
+      ],
+      "submittedAt": "2025-10-05 17:33:22",
+      "guestName": "Robert Taylor",
+      "listingName": "Studio W1 C - 42 Westminster Court"
+    },
+    {
+      "id": 7463,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 8.7,
+      "publicReview": "Wonderful stay! The location is unbeatable and the apartment has character. Only minor issue was parking.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 9 },
+        { "category": "location", "rating": 10 },
+        { "category": "value", "rating": 8 },
+        { "category": "check_in", "rating": 8 }
+      ],
+      "submittedAt": "2025-10-08 13:45:50",
+      "guestName": "Amanda Wilson",
+      "listingName": "3B E1 D - 88 Brick Lane Lofts"
+    },
+    {
+      "id": 7464,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 9.2,
+      "publicReview": "Fantastic apartment with amazing views. Host was super helpful with local recommendations. Would stay again!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 10 },
+        { "category": "location", "rating": 9 },
+        { "category": "value", "rating": 9 },
+        { "category": "accuracy", "rating": 9 }
+      ],
+      "submittedAt": "2025-10-10 20:15:40",
+      "guestName": "James Rodriguez",
+      "listingName": "2B N1 A - 29 Shoreditch Heights"
+    },
+    {
+      "id": 7465,
+      "type": "host-to-guest",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Lovely family, very considerate and friendly. Would be happy to host them again!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 9 },
+        { "category": "respect_house_rules", "rating": 10 }
+      ],
+      "submittedAt": "2025-10-12 09:22:18",
+      "guestName": "Patricia Martinez",
+      "listingName": "3B E1 D - 88 Brick Lane Lofts"
+    },
+    {
+      "id": 7466,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 7.8,
+      "publicReview": "Good apartment overall. Could benefit from some updates to furniture, but clean and functional.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 8 },
+        { "category": "communication", "rating": 8 },
+        { "category": "location", "rating": 8 },
+        { "category": "value", "rating": 7 },
+        { "category": "accuracy", "rating": 8 }
+      ],
+      "submittedAt": "2025-10-14 15:50:25",
+      "guestName": "Christopher Davis",
+      "listingName": "1B S2 B - 15 Camden Square"
+    },
+    {
+      "id": 7467,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Perfect location for exploring the city. Walking distance to everything. The apartment was cozy and had great heating!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 8 },
+        { "category": "location", "rating": 10 },
+        { "category": "value", "rating": 9 },
+        { "category": "check_in", "rating": 9 }
+      ],
+      "submittedAt": "2025-10-15 11:30:55",
+      "guestName": "Nancy White",
+      "listingName": "Studio W1 C - 42 Westminster Court"
+    },
+    {
+      "id": 7468,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 9.0,
+      "publicReview": "Excellent stay! The apartment was spotless and the check-in process was seamless. Great communication throughout.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 9 },
+        { "category": "location", "rating": 9 },
+        { "category": "value", "rating": 9 },
+        { "category": "check_in", "rating": 9 },
+        { "category": "accuracy", "rating": 8 }
+      ],
+      "submittedAt": "2025-10-16 18:40:12",
+      "guestName": "Daniel Kim",
+      "listingName": "3B E1 D - 88 Brick Lane Lofts"
+    },
+    {
+      "id": 7469,
+      "type": "host-to-guest",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Wonderful guests! Very tidy and respectful. Communication was excellent. Welcome anytime!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 10 },
+        { "category": "respect_house_rules", "rating": 10 }
+      ],
+      "submittedAt": "2025-10-17 12:15:33",
+      "guestName": "Karen Johnson",
+      "listingName": "2B N1 A - 29 Shoreditch Heights"
+    },
+    {
+      "id": 7470,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 5.5,
+      "publicReview": "Had some issues during our stay. The internet was unreliable and heating didn't work properly. Host did try to help but couldn't resolve everything.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 7 },
+        { "category": "communication", "rating": 6 },
+        { "category": "location", "rating": 7 },
+        { "category": "value", "rating": 4 },
+        { "category": "accuracy", "rating": 5 }
+      ],
+      "submittedAt": "2025-10-17 16:22:48",
+      "guestName": "Thomas Anderson",
+      "listingName": "1B S2 B - 15 Camden Square"
+    },
+    {
+      "id": 7471,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 9.5,
+      "publicReview": "Incredible space! Modern, clean, and perfectly located. The host thought of everything. Best Airbnb experience we've had!",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 10 },
+        { "category": "location", "rating": 10 },
+        { "category": "value", "rating": 9 },
+        { "category": "check_in", "rating": 10 },
+        { "category": "accuracy", "rating": 9 }
+      ],
+      "submittedAt": "2025-10-18 14:55:20",
+      "guestName": "Michelle Clark",
+      "listingName": "Studio W1 C - 42 Westminster Court"
+    },
+    {
+      "id": 7472,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 8.3,
+      "publicReview": "Very nice apartment with great amenities. The area is lively and full of character. Would recommend for young professionals.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 8 },
+        { "category": "communication", "rating": 9 },
+        { "category": "location", "rating": 9 },
+        { "category": "value", "rating": 8 },
+        { "category": "accuracy", "rating": 8 }
+      ],
+      "submittedAt": "2025-10-18 10:33:15",
+      "guestName": "Ryan Phillips",
+      "listingName": "3B E1 D - 88 Brick Lane Lofts"
+    },
+    {
+      "id": 7473,
+      "type": "host-to-guest",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Excellent guests! Very clean and respectful. Great communication from start to finish.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 10 },
+        { "category": "respect_house_rules", "rating": 9 }
+      ],
+      "submittedAt": "2025-10-18 19:45:55",
+      "guestName": "Jessica Moore",
+      "listingName": "Studio W1 C - 42 Westminster Court"
+    },
+    {
+      "id": 7474,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 8.9,
+      "publicReview": "Great apartment in a fantastic location. Everything was clean and as described. Minor delay with check-in but otherwise perfect.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 9 },
+        { "category": "location", "rating": 10 },
+        { "category": "value", "rating": 9 },
+        { "category": "check_in", "rating": 7 },
+        { "category": "accuracy", "rating": 9 }
+      ],
+      "submittedAt": "2025-10-18 21:10:42",
+      "guestName": "Brian Thompson",
+      "listingName": "2B N1 A - 29 Shoreditch Heights"
+    }
+  ]
+}
