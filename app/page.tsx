@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getPropertiesWithReviews } from '@/lib/db'
+import { loadMockReviewsNormalized, calculatePropertyPerformance } from '@/lib/mock-data'
 
 export const dynamic = 'force-dynamic';
 
@@ -9,8 +10,18 @@ export default async function Home() {
   try {
     properties = await getPropertiesWithReviews();
   } catch (error) {
-    console.error('Error fetching properties:', error);
-    // During build or if DB is unavailable, use empty array
+    console.error('Error fetching properties from database:', error);
+    console.log('Falling back to mock data...');
+
+    // Load mock data as fallback
+    try {
+      const mockReviews = await loadMockReviewsNormalized();
+      properties = calculatePropertyPerformance(mockReviews);
+      console.log(`Loaded ${properties.length} properties from mock data`);
+    } catch (mockError) {
+      console.error('Error loading mock data:', mockError);
+      // Use empty array if mock data also fails
+    }
   }
 
   return (

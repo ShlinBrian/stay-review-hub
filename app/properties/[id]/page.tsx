@@ -11,6 +11,7 @@ import { getReviewsByProperty } from '@/lib/db';
 import { ReviewCard } from '@/components/ReviewCard';
 import { StarRating } from '@/components/StarRating';
 import { EmptyState } from '@/components/EmptyState';
+import { loadMockReviewsNormalized } from '@/lib/mock-data';
 import Link from 'next/link';
 
 interface PropertyPageProps {
@@ -29,8 +30,18 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
   try {
     allReviews = await getReviewsByProperty(id);
   } catch (error) {
-    console.error(`Error fetching reviews for property ${id}:`, error);
-    // During build or if DB is unavailable, use empty array
+    console.error(`Error fetching reviews for property ${id} from database:`, error);
+    console.log('Falling back to mock data...');
+
+    // Load mock data and filter for this property
+    try {
+      const mockReviews = await loadMockReviewsNormalized();
+      allReviews = mockReviews.filter(r => r.propertyId === id);
+      console.log(`Loaded ${allReviews.length} reviews for property ${id} from mock data`);
+    } catch (mockError) {
+      console.error('Error loading mock data:', mockError);
+      // Use empty array if mock data also fails
+    }
   }
 
   // Filter to only show approved reviews

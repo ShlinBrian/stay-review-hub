@@ -11,6 +11,7 @@
 
 import { DashboardClient } from './DashboardClient';
 import { getPropertiesWithReviews, getAllReviews } from '@/lib/db';
+import { loadMockReviewsNormalized, calculatePropertyPerformance } from '@/lib/mock-data';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,9 +26,18 @@ export default async function DashboardPage() {
       getAllReviews()
     ]);
   } catch (error) {
-    console.error('Error fetching dashboard data:', error);
-    // During build or if DB is unavailable, use empty arrays
-    // The dashboard will show appropriate empty state
+    console.error('Error fetching dashboard data from database:', error);
+    console.log('Falling back to mock data...');
+
+    // Load mock data as fallback
+    try {
+      reviews = await loadMockReviewsNormalized();
+      properties = calculatePropertyPerformance(reviews);
+      console.log(`Loaded ${reviews.length} reviews and ${properties.length} properties from mock data`);
+    } catch (mockError) {
+      console.error('Error loading mock data:', mockError);
+      // Use empty arrays if mock data also fails
+    }
   }
 
   return (
