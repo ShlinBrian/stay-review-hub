@@ -55,7 +55,7 @@ export function StarRating({
 
       {showNumber && (
         <span className={`font-semibold text-gray-700 ${sizeClasses[size]}`}>
-          {normalizedRating.toFixed(1)}
+          {rating.toFixed(1)}
         </span>
       )}
     </div>
