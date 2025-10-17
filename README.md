@@ -10,18 +10,37 @@ A property management dashboard for assessing guest reviews across multiple prop
 
 ## Quick Start
 
+### Option 1: Demo Mode (No Database Required)
+
 ```bash
 # 1. Install dependencies
 npm install
 
-# 2. Set up database
+# 2. Start development server
+npm run dev
+```
+
+The app will automatically use mock data from `lib/mock-reviews.json` when no database is available.
+
+### Option 2: Full Setup with Database
+
+> **Note:** This Docker setup is provided for convenience but has not been fully tested. For production deployments, use managed PostgreSQL services (Vercel Postgres, Supabase, Railway).
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start PostgreSQL with Docker
+docker-compose up -d
+
+# 3. Set up database
 npx prisma migrate dev --name init
 npx prisma generate
 
-# 3. Seed with mock data
+# 4. Seed with mock data
 npm run seed
 
-# 4. Start development server
+# 5. Start development server
 npm run dev
 ```
 
