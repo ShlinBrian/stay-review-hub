@@ -4,6 +4,8 @@ A property management dashboard for assessing guest reviews across multiple prop
 
 **Developer Assessment Project** | Next.js 14 • TypeScript • Prisma • Tailwind CSS
 
+**🚀 [Live Demo](https://stay-review-hub.vercel.app/dashboard)** | [GitHub Repository](https://github.com/ShlinBrian/stay-review-hub)
+
 ---
 
 ## Quick Start
