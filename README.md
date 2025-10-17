@@ -40,6 +40,22 @@ Property managers can:
 
 ---
 
+## Screenshots
+
+### Home Page - Property Overview
+![Home Page](public/docs/screenshots/demo1.png)
+*Property performance cards with ratings, review counts, and trend indicators*
+
+### Manager Dashboard - Review Management
+![Manager Dashboard](public/docs/screenshots/demo2.png)
+*Advanced filtering, sorting, and one-click review approval system*
+
+### Public Property Page - Guest Reviews
+![Property Page](public/docs/screenshots/demo3.png)
+*Professional display of approved reviews with star ratings and categories*
+
+---
+
 ## Tech Stack
 
 | Layer | Technology | Why |
