@@ -28,20 +28,25 @@ function normalizeHostawayReview(raw: any): any {
     .replace(/\s+/g, '-')
     .replace(/[^\w-]/g, '');
 
-  // Calculate average rating from categories
-  const ratings = raw.reviewCategory
-    .filter((cat: any) => cat.rating !== null)
-    .map((cat: any) => cat.rating);
+  // Use the provided overall rating if available, otherwise calculate from categories
+  let finalRating: number | null = raw.rating;
 
-  const averageRating = ratings.length > 0
-    ? ratings.reduce((sum: number, r: number) => sum + r, 0) / ratings.length
-    : null;
+  // Only calculate from categories if there's NO overall rating
+  if (finalRating === null || finalRating === undefined) {
+    const ratings = raw.reviewCategory
+      .filter((cat: any) => cat.rating !== null)
+      .map((cat: any) => cat.rating);
+
+    finalRating = ratings.length > 0
+      ? ratings.reduce((sum: number, r: number) => sum + r, 0) / ratings.length
+      : null;
+  }
 
   return {
     id: raw.id.toString(),
     propertyId,
     guestName: raw.guestName,
-    rating: averageRating,
+    rating: finalRating,
     publicReview: raw.publicReview,
     channel: 'hostaway',
     reviewType: raw.type,

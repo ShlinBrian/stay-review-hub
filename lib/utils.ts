@@ -76,9 +76,11 @@ export function mapListingToPropertyId(listingName: string): string {
  * @returns Normalized Review object
  */
 export function normalizeHostawayReview(raw: HostawayReview): Review {
-  // Calculate rating: use provided rating or calculate from categories
+  // Use the provided overall rating if available, otherwise calculate from categories
+  // This ensures we display the actual rating given by the guest
   let finalRating: number | null = raw.rating;
 
+  // Only calculate from categories if there's NO overall rating
   if (finalRating === null || finalRating === undefined) {
     finalRating = calculateAverageRating(raw.reviewCategory);
   }
