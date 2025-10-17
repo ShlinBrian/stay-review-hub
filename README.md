@@ -556,16 +556,267 @@ NODE_ENV=production
 
 ### Vercel (Recommended)
 
-1. Push to GitHub
-2. Import project in Vercel
-3. Add environment variables
-4. Deploy automatically on push
+**Prerequisites:**
+- GitHub account with this repository
+- Vercel account (sign up at https://vercel.com)
+- PostgreSQL database (e.g., Vercel Postgres, Supabase, or Railway)
 
-### Self-Hosted
+#### Step 1: Prepare Your Repository
 
 ```bash
+# Ensure your code is pushed to GitHub
+git add .
+git commit -m "Prepare for deployment"
+git push origin main
+```
+
+#### Step 2: Create a New Project on Vercel
+
+1. Go to https://vercel.com/new
+2. Click **"Import Project"**
+3. Select **"Import from GitHub"**
+4. Authorize Vercel to access your GitHub repositories
+5. Select your `flex_living` repository
+
+#### Step 3: Configure Project Settings
+
+**Framework Preset:**
+- Select: **Next.js**
+- Vercel auto-detects this from your `package.json`
+
+**Root Directory:**
+- Leave as: **`.`** (root)
+- Unless you have a monorepo, keep this at the root
+
+**Build Command:**
+```bash
 npm run build
-npm start
+```
+
+**Output Directory:**
+```
+.next
+```
+(Vercel auto-detects this for Next.js)
+
+**Install Command:**
+```bash
+npm install
+```
+
+**Development Command:**
+```bash
+npm run dev
+```
+
+#### Step 4: Add Environment Variables
+
+Click **"Environment Variables"** and add the following:
+
+| Name | Value | Notes |
+|------|-------|-------|
+| `DATABASE_URL` | `postgresql://user:pass@host/db` | PostgreSQL connection string |
+| `HOSTAWAY_ACCOUNT_ID` | `61148` | Your Hostaway account ID |
+| `HOSTAWAY_API_KEY` | `f94377...` | Your Hostaway API key |
+| `NODE_ENV` | `production` | Enable production optimizations |
+
+**Getting a PostgreSQL Database:**
+
+**Option 1: Vercel Postgres (Easiest)**
+```bash
+# In Vercel dashboard:
+1. Go to Storage tab
+2. Create → Postgres
+3. Copy DATABASE_URL automatically added
+```
+
+**Option 2: Supabase**
+```bash
+1. Go to https://supabase.com
+2. Create new project
+3. Go to Settings → Database
+4. Copy "Connection string" → "Prisma"
+5. Replace [YOUR-PASSWORD] with your actual password
+```
+
+**Option 3: Railway**
+```bash
+1. Go to https://railway.app
+2. New Project → Provision PostgreSQL
+3. Copy POSTGRES_URL from Variables tab
+```
+
+#### Step 5: Configure Build Settings
+
+**Build & Development Settings:**
+- **Framework Preset**: Next.js
+- **Build Command**: `npm run build`
+- **Output Directory**: `.next`
+- **Install Command**: `npm install`
+
+**Advanced Build Settings** (optional):
+```bash
+# If you need to run migrations during build
+Build Command: npx prisma migrate deploy && npm run build
+
+# If you need to generate Prisma client
+Build Command: npx prisma generate && npm run build
+```
+
+#### Step 6: Deploy
+
+1. Click **"Deploy"**
+2. Wait 2-3 minutes for build to complete
+3. Vercel will provide a URL: `https://flex-living-xxxxx.vercel.app`
+
+#### Step 7: Run Database Migrations
+
+After first deployment:
+
+```bash
+# Option A: Via Vercel CLI
+npm i -g vercel
+vercel login
+vercel env pull .env.production
+DATABASE_URL=$(cat .env.production | grep DATABASE_URL | cut -d '=' -f2) npx prisma migrate deploy
+
+# Option B: Manually
+npx prisma migrate deploy --preview-feature
+```
+
+#### Step 8: Seed Production Database (Optional)
+
+```bash
+# Seed with mock data for demo purposes
+npm run seed
+```
+
+### Post-Deployment Checklist
+
+- [ ] Visit your Vercel URL
+- [ ] Test `/api/reviews/hostaway` endpoint
+- [ ] Verify dashboard loads at `/dashboard`
+- [ ] Check property pages at `/properties/[id]`
+- [ ] Test review approval functionality
+- [ ] Verify responsive design on mobile
+- [ ] Check Vercel deployment logs for errors
+
+### Continuous Deployment
+
+**Automatic Deployments:**
+- Every `git push` to `main` triggers a new deployment
+- Preview deployments for pull requests
+- Automatic SSL certificates
+- Global CDN distribution
+
+**Manual Redeployment:**
+```bash
+git commit --allow-empty -m "Trigger deployment"
+git push origin main
+```
+
+### Environment-Specific Configuration
+
+**Production `.env` (Vercel):**
+```env
+DATABASE_URL="postgresql://user:password@host.postgres.vercel-storage.com:5432/verceldb?pgbouncer=true&connect_timeout=15"
+HOSTAWAY_ACCOUNT_ID=61148
+HOSTAWAY_API_KEY=f94377ebbbb479490bb3ec364649168dc443dda2e4830facaf5de2e74ccc9152
+NODE_ENV=production
+```
+
+**Development `.env` (Local):**
+```env
+DATABASE_URL="file:./dev.db"
+HOSTAWAY_ACCOUNT_ID=61148
+HOSTAWAY_API_KEY=f94377ebbbb479490bb3ec364649168dc443dda2e4830facaf5de2e74ccc9152
+NODE_ENV=development
+```
+
+### Vercel CLI Commands
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Login
+vercel login
+
+# Deploy from command line
+vercel
+
+# Deploy to production
+vercel --prod
+
+# View logs
+vercel logs
+
+# Pull environment variables
+vercel env pull
+```
+
+### Troubleshooting Deployment
+
+**Build Fails:**
+```bash
+# Check build logs in Vercel dashboard
+# Common fixes:
+1. Ensure all dependencies are in package.json
+2. Run npx prisma generate before build
+3. Check TypeScript errors locally: npm run build
+```
+
+**Database Connection Issues:**
+```bash
+# Verify DATABASE_URL format:
+postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public
+
+# Test connection locally:
+npx prisma db push
+```
+
+**API Routes Not Working:**
+```bash
+# Check Vercel Functions logs
+# Ensure environment variables are set
+# Verify API routes are in app/api/ directory
+```
+
+**Prisma Client Errors:**
+```bash
+# Add to package.json scripts:
+"postinstall": "prisma generate"
+
+# Redeploy after adding postinstall hook
+```
+
+### Self-Hosted Deployment
+
+**Using PM2:**
+```bash
+npm run build
+npm i -g pm2
+pm2 start npm --name "flex-living" -- start
+pm2 save
+pm2 startup
+```
+
+**Using Docker:**
+```dockerfile
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npx prisma generate
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+```bash
+docker build -t flex-living .
+docker run -p 3000:3000 --env-file .env flex-living
 ```
 
 Runs on port 3000 by default.

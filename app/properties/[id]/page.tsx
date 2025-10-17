@@ -19,11 +19,19 @@ interface PropertyPageProps {
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function PropertyPage({ params }: PropertyPageProps) {
   const { id } = params;
 
-  // Fetch all reviews for this property
-  const allReviews = await getReviewsByProperty(id);
+  // Fetch all reviews for this property with error handling
+  let allReviews: Awaited<ReturnType<typeof getReviewsByProperty>> = [];
+  try {
+    allReviews = await getReviewsByProperty(id);
+  } catch (error) {
+    console.error(`Error fetching reviews for property ${id}:`, error);
+    // During build or if DB is unavailable, use empty array
+  }
 
   // Filter to only show approved reviews
   const approvedReviews = allReviews.filter(r => r.displayOnWebsite);

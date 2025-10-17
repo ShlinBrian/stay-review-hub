@@ -12,12 +12,23 @@
 import { DashboardClient } from './DashboardClient';
 import { getPropertiesWithReviews, getAllReviews } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
-  // Fetch data on the server
-  const [properties, reviews] = await Promise.all([
-    getPropertiesWithReviews(),
-    getAllReviews()
-  ]);
+  // Fetch data on the server with error handling for build time
+  let properties: Awaited<ReturnType<typeof getPropertiesWithReviews>> = [];
+  let reviews: Awaited<ReturnType<typeof getAllReviews>> = [];
+
+  try {
+    [properties, reviews] = await Promise.all([
+      getPropertiesWithReviews(),
+      getAllReviews()
+    ]);
+  } catch (error) {
+    console.error('Error fetching dashboard data:', error);
+    // During build or if DB is unavailable, use empty arrays
+    // The dashboard will show appropriate empty state
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

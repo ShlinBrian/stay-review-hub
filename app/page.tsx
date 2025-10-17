@@ -1,8 +1,17 @@
 import Link from 'next/link'
 import { getPropertiesWithReviews } from '@/lib/db'
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
-  const properties = await getPropertiesWithReviews();
+  let properties: Awaited<ReturnType<typeof getPropertiesWithReviews>> = [];
+
+  try {
+    properties = await getPropertiesWithReviews();
+  } catch (error) {
+    console.error('Error fetching properties:', error);
+    // During build or if DB is unavailable, use empty array
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
